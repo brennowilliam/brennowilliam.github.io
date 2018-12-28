@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Brenno Ferreira]]></title><description><![CDATA[My Personal blog using Gatsby.]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 28 Dec 2018 22:36:17 GMT</lastBuildDate><item><title><![CDATA[Records in Elm]]></title><description><![CDATA[Objects are present in any JavaScript codebase. As you go by your day writing code, you will use objects all the time. One of the first…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//2018-12-28-Discovering-Elm-Records/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//2018-12-28-Discovering-Elm-Records/</guid><pubDate>Fri, 28 Dec 2018 12:05:32 GMT</pubDate><content:encoded>&lt;p&gt;Objects are present in any JavaScript codebase. As you go by your day writing code, you will use objects all the time.&lt;/p&gt;
+&lt;p&gt;One of the first things I like to learn when diving into a new language is how to use objects.&lt;/p&gt;
+&lt;p&gt;Since Elm is a pure functional language, it does not have support for objects. But, don’t get upset! Elm offers something called record which is a key/value pair data structure very similar to objects in JS.&lt;/p&gt;
+&lt;h3&gt;Syntax&lt;/h3&gt;
+&lt;p&gt;The only difference between the way records are declared from objects in JS, is the use of &lt;code class=&quot;language-text&quot;&gt;=&lt;/code&gt; instead of &lt;code class=&quot;language-text&quot;&gt;:&lt;/code&gt; to separate the key and the value.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;elm&quot;&gt;&lt;pre class=&quot;language-elm&quot;&gt;&lt;code class=&quot;language-elm&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;alias&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;String&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Int&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token hvariable&quot;&gt;p1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Person&lt;/span&gt;
+&lt;span class=&quot;token hvariable&quot;&gt;p1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; “&lt;span class=&quot;token constant&quot;&gt;Sean&lt;/span&gt;”&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;21&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;How to get and set values&lt;/h3&gt;
+&lt;p&gt;To get the value of a field in a record, you can use the &lt;code class=&quot;language-text&quot;&gt;dot notation&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;elm&quot;&gt;&lt;pre class=&quot;language-elm&quot;&gt;&lt;code class=&quot;language-elm&quot;&gt;&lt;span class=&quot;token hvariable&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token hvariable&quot;&gt;name&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;--Returns&lt;/span&gt;
+“&lt;span class=&quot;token constant&quot;&gt;Sean&lt;/span&gt;” &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;String&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Elm also provides an ‘unusual’ way, imho, to retrieve fields in a record that looks like a function call.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;elm&quot;&gt;&lt;pre class=&quot;language-elm&quot;&gt;&lt;code class=&quot;language-elm&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token hvariable&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;p1&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;--Returns&lt;/span&gt;
+“&lt;span class=&quot;token constant&quot;&gt;Sean&lt;/span&gt;” &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;String&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I honestly prefer the dot notation!&lt;/p&gt;
+&lt;p&gt;Updating values in a record is straight forward.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;elm&quot;&gt;&lt;pre class=&quot;language-elm&quot;&gt;&lt;code class=&quot;language-elm&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;p1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; “&lt;span class=&quot;token constant&quot;&gt;Bob&lt;/span&gt;” &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- Returns&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;28&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Bob&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Since records are immutable, this will NOT modify the record. It will create a new one with the updated value.&lt;/p&gt;
+&lt;p&gt;Basically what we are saying above is: &lt;code class=&quot;language-text&quot;&gt;Create a new record that contains everything person has, BUT modify the name by setting its value to “Bob”.&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Pattern Matching&lt;/h3&gt;
+&lt;p&gt;Elm also supports pattern matching on records.&lt;/p&gt;
+&lt;p&gt;This is very similar to destructuring in JavaScript.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;elm&quot;&gt;&lt;pre class=&quot;language-elm&quot;&gt;&lt;code class=&quot;language-elm&quot;&gt;&lt;span class=&quot;token hvariable&quot;&gt;olderThan18&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+    &lt;span class=&quot;token hvariable&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt;
+
+&lt;span class=&quot;token hvariable&quot;&gt;olderThan18&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;person&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;--Returns&lt;/span&gt;
+&lt;span class=&quot;token constant&quot;&gt;True&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Bool&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Differences&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;The value of a field will never be &lt;code class=&quot;language-text&quot;&gt;undefined&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;null&lt;/code&gt;.&lt;br&gt;
+When working with records in Elm, you don’t need to worry of having a field with no value. Every field in a Elm record must have a value.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You cannot ask for a field that does not exist.&lt;br&gt;
+If you try to ask for a field that does not exist in the record, Elm compiler will
+warn you that it is not valid.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Since Elm has no support for objects, no more this inside of objects.&lt;br&gt;
+The use of the this keyword hunts many JavaScript developers. What is the context of this? When do we need to bind? Why is this not what I expected?
+Well, this is over with Elm. No need to worry about that anymore. :)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Wrap-up&lt;/h3&gt;
+&lt;p&gt;Working with records in elm is pretty simple. The interface looks very similar to
+other languages which makes it easier to understand.&lt;/p&gt;
+&lt;p&gt;Also, records in Elm are a lot simpler than objects in JavaScript and Python for example.
+So, this is the basic differences that I could see while working with records in Elm. I could’ve missed other important functionalities that I’m not aware at this moment. However, I believe that with the content presented above, you should be up and running with records in Elm.&lt;/p&gt;
+&lt;!-- To get a better understanding on this subject, please check this video on my youtube channel, where I show how records work on the elm repl. --&gt;
+&lt;p&gt;See you next post!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[First Post]]></title><description><![CDATA[This is my first post on my new blog! I’m hoping that with this blog, I can share things as I learn to help others learn as well. I’ll talk…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//first-post/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//first-post/</guid><pubDate>Thu, 27 Dec 2018 12:05:32 GMT</pubDate><content:encoded>&lt;p&gt;This is my first post on my new blog!&lt;/p&gt;
+&lt;p&gt;I’m hoping that with this blog, I can share things as I learn to help others learn as well.&lt;/p&gt;
+&lt;p&gt;I’ll talk about everything that I learn. From coding to fitness stuff, I want to give people
+the chance to see how I do things.&lt;/p&gt;
+&lt;p&gt;Also, I plan to learn a lot from others who can share their knowledge with me as well.&lt;/p&gt;
+&lt;p&gt;As a first post with programming content, I plan on writing about my learning experience with Elm.
+I’ve been learning Elm since last week, and I am finding it to be fascinated.&lt;/p&gt;
+&lt;p&gt;So, stay tuned for my next post!&lt;/p&gt;
+&lt;p&gt;See you next post!&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ba8697b3749795153395d921371a58d7/db559/question-mark.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBf/EABQBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAeUkOKJ//8QAGRAAAgMBAAAAAAAAAAAAAAAAAQIAEDEy/9oACAEBAAEFAlUueTF2v//EABURAQEAAAAAAAAAAAAAAAAAABBB/9oACAEDAQE/AYf/xAAWEQADAAAAAAAAAAAAAAAAAAAQESH/2gAIAQIBAT8BrH//xAAYEAACAwAAAAAAAAAAAAAAAAAAASAhIv/aAAgBAQAGPwKjSj//xAAbEAEAAgIDAAAAAAAAAAAAAAABABEQITFxgf/aAAgBAQABPyGuG3mU19pPIk0Ybx//2gAMAwEAAgADAAAAEDMP/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8QQY//xAAWEQEBAQAAAAAAAAAAAAAAAAABEGH/2gAIAQIBAT8QEYn/xAAaEAEAAwADAAAAAAAAAAAAAAABABEhMUFx/9oACAEBAAE/EHFULbWQZ2AiGl9+zdw+wXYXY08kVrd3uAW4cz//2Q==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Questions&quot;
+        title=&quot;&quot;
+        src=&quot;/static/ba8697b3749795153395d921371a58d7/f8fb9/question-mark.jpg&quot;
+        srcset=&quot;/static/ba8697b3749795153395d921371a58d7/e8976/question-mark.jpg 148w,
+/static/ba8697b3749795153395d921371a58d7/63df2/question-mark.jpg 295w,
+/static/ba8697b3749795153395d921371a58d7/f8fb9/question-mark.jpg 590w,
+/static/ba8697b3749795153395d921371a58d7/db559/question-mark.jpg 640w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;</content:encoded></item></channel></rss>
